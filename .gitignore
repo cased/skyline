@@ -51,3 +51,7 @@ htmlcov/
 # Distribution
 *.tar.gz
 *.whl
+
+# GitHub App credentials
+.env
+.github/app-private-key.pem

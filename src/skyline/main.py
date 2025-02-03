@@ -290,19 +290,20 @@ def main():
     )
     parser.add_argument('-v', '--version', action='version',
                        version=f'%(prog)s {get_version_string()}')
-    parser.add_argument('--org', help='GitHub organization name')
-    parser.add_argument('--config', help='Path to JSON config file')
+    
+    subparsers = parser.add_subparsers(dest='command', help='Commands')
+    
+    # Create command
+    create_parser = subparsers.add_parser('create', help='Create a new GitHub App')
+    create_parser.add_argument('--org', help='GitHub organization name')
+    create_parser.add_argument('--config', help='Path to JSON config file')
     
     args = parser.parse_args()
     
-    if args.org:
-        org = args.org
-    else:
-        org = Prompt.ask("\nWhat organization should own this app?")
-        if not org:
-            console.print("[red]Organization name is required[/red]")
-            sys.exit(1)
-        
+    if args.command != 'create':
+        parser.print_help()
+        sys.exit(1)
+    
     if args.config:
         try:
             with open(args.config) as f:
@@ -327,6 +328,15 @@ def main():
             "default_permissions": DEFAULT_PERMISSIONS,
             "default_events": DEFAULT_EVENTS
         }
+    
+    # Determine organization: CLI flag or interactive prompt
+    if args.org:
+        org = args.org
+    else:
+        org = Prompt.ask("\nWhat organization should own this app?")
+        if not org:
+            console.print("[red]Organization name is required[/red]")
+            sys.exit(1)
         
     create_github_app(config, org)
 

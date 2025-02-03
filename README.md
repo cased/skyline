@@ -52,13 +52,13 @@ Create a config file:
 }
 ```
 
-Then run:
+Then run one of these commands:
 ```bash
-# Let it prompt for org (interactive)
-skyline create --config config.json
-
-# Or specify org (fully automated)
+# Specify org via CLI flag (recommended for automation)
 skyline create --config config.json --org my-org-name
+
+# Or let it prompt for org interactively
+skyline create --config config.json
 ```
 
 ## What happens when you run it?
