@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "skyline"
 version = "0.1.0"
-description = "Create GitHub Apps with automated webhook forwarding"
+description = "CLI tool for easily creating GitHub Apps"
 readme = "README.md"
 authors = [
     {name = "Cased", email = "ted@cased.com"}

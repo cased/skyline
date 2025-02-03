@@ -3,10 +3,10 @@
 CLI tool for easily creating GitHub Apps. Ideal for repeatable and automated local dev setup. If your app
 integrates with GitHub via GitHub Apps, you'll want this.
 
-1. Use either a JSON config file or an interactive CLI interface for app configuration (great for repeatable local dev setup)
-2. Works with the obscure but useful GitHub App Manifest semi-automated creation flow
-3. `skyline` automatically handles one-off webhook forwarding to handle the app creation callback (via smee.io), no configuration needed
-4. Lastly, securely stores the newly-created app credentials so developers can get right to work
+* Use either a JSON config file or an interactive CLI interface for app configuration (great for repeatable local dev setup)
+* Works with the obscure but useful GitHub App Manifest semi-automated creation flow
+* `skyline` automatically handles one-off webhook forwarding to handle the app creation callback (via smee.io), no configuration needed
+* Lastly, securely stores the newly-created app credentials so developers can get right to work
 
 ## Features
 
@@ -18,12 +18,11 @@ integrates with GitHub via GitHub Apps, you'll want this.
 
 ## Installation
 
-### For Users
-
-One-liner to install globally:
 ```bash
 curl -sSL https://raw.githubusercontent.com/cased/skyline/main/install.sh | bash
 ```
+
+The script will install `skyline` using pip, making it available in your PATH.
 
 ## Usage
 

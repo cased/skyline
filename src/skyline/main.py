@@ -13,6 +13,7 @@ import time
 import os
 import logging
 from . import smee
+from . import __version__
 
 # Silence Flask development server
 cli = sys.modules['flask.cli']
@@ -284,99 +285,50 @@ def create_github_app(config, org):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="""
-Commands:
-  create    Create a new GitHub App (interactive or via config)
-
-Usage: skyline create [options]
-   or: skyline create --org org [--config file]
-
-EXAMPLES
-    skyline create                                 Create app interactively
-    skyline create --config config.json            From config, will prompt for org
-    skyline create --org acme                      Create for specific org
-    skyline create --config conf.json --org acme   Create from config for org
-
-Note: Only supports creating GitHub Apps under organizations.
-""",
-        formatter_class=CustomHelpFormatter,
-        add_help=False,
-        usage=argparse.SUPPRESS
+        description="CLI tool for easily creating GitHub Apps",
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    
-    parser.add_argument('-h', '--help', action='help', help=argparse.SUPPRESS)
-    subparsers = parser.add_subparsers(dest='command', help=argparse.SUPPRESS)
-    
-    # Create command
-    create_parser = subparsers.add_parser('create', 
-        help='Create a new GitHub App',
-        description="""Create a new GitHub App with automated webhook forwarding
-
-Configuration:
-  You can provide a JSON config file with these fields:
-    {
-      "name": "My GitHub App",          # Required
-      "url": "https://example.com",     # Required
-      "description": "App description",  # Optional
-      "public": true                    # Optional, default: true
-    }
-
-  On success, credentials are saved to:
-    • .env file with app credentials
-    • .github/app-private-key.pem
-
-Arguments:
-  --config    Path to JSON configuration file. If not provided, will use interactive mode
-  --org       GitHub organization name. If not provided, will prompt for it
-""",
-        formatter_class=argparse.RawDescriptionHelpFormatter)
-    
-    create_parser.add_argument('--config', 
-        help='Path to JSON configuration file. If not provided, will use interactive mode')
-    create_parser.add_argument('--org', 
-        help='GitHub organization name. If not provided, will prompt for it')
+    parser.add_argument('-v', '--version', action='version', 
+                       version=f'%(prog)s {__version__}')
+    parser.add_argument('--org', help='GitHub organization name')
+    parser.add_argument('--config', help='Path to JSON config file')
     
     args = parser.parse_args()
     
-    if not args.command:
-        parser.print_help()
-        sys.exit(1)
-        
-    if args.command == 'create':
-        # Get org name if not provided
+    if args.org:
         org = args.org
+    else:
+        org = Prompt.ask("\nWhat organization should own this app?")
         if not org:
-            org = Prompt.ask("\nWhat organization should own this app?")
-            if not org:
-                console.print("[red]Organization name is required[/red]")
-                sys.exit(1)
+            console.print("[red]Organization name is required[/red]")
+            sys.exit(1)
         
-        if args.config:
-            try:
-                with open(args.config) as f:
-                    config = json.load(f)
-            except Exception as e:
-                console.print(f"[red]Error reading config file: {e}[/red]")
-                sys.exit(1)
-        else:
-            # Interactive mode
-            console.print("\n[bold]Skyline - GitHub App Creation[/bold]")
-            
-            # Get app name
-            name = Prompt.ask("\nWhat should we name your GitHub App?")
-            url = Prompt.ask("\nWhat's the homepage URL for your app?", default="https://example.com")
-            description = Prompt.ask("\nProvide a brief description of your app")
-            
-            config = {
-                "name": name,
-                "url": url,
-                "description": description,
-                "public": True,
-                "default_permissions": DEFAULT_PERMISSIONS,
-                "default_events": DEFAULT_EVENTS
-            }
+    if args.config:
+        try:
+            with open(args.config) as f:
+                config = json.load(f)
+        except Exception as e:
+            console.print(f"[red]Error reading config file: {e}[/red]")
+            sys.exit(1)
+    else:
+        # Interactive mode
+        console.print("\n[bold]Skyline - GitHub App Creation[/bold]")
         
-        create_github_app(config, org)
+        # Get app name
+        name = Prompt.ask("\nWhat should we name your GitHub App?")
+        url = Prompt.ask("\nWhat's the homepage URL for your app?", default="https://example.com")
+        description = Prompt.ask("\nProvide a brief description of your app")
+        
+        config = {
+            "name": name,
+            "url": url,
+            "description": description,
+            "public": True,
+            "default_permissions": DEFAULT_PERMISSIONS,
+            "default_events": DEFAULT_EVENTS
+        }
+        
+    create_github_app(config, org)
 
 if __name__ == "__main__":
     main()

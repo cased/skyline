@@ -13,16 +13,8 @@ cd $TMP_DIR
 git clone https://github.com/cased/skyline.git
 cd skyline
 
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install the package
-pip install -e .
-
-# Create symlink to make it globally available
-INSTALL_PATH="/usr/local/bin/skyline"
-sudo ln -sf "$(pwd)/venv/bin/skyline" "$INSTALL_PATH"
+# Install the package (pip will handle putting the script in the right place)
+python3 -m pip install .
 
 echo "✨ Installation complete! You can now use 'skyline' from any directory."
 echo "Try 'skyline create --help' to get started."
