@@ -62,22 +62,21 @@ skyline create --config config.json
 skyline create --config config.json --org my-org-name
 ```
 
-## What Happens When You Run It
+## What happens when you run it?
 
-1. **Configuration**: Either prompts you for details or reads from config file
+1. **Configuration**: `skyline` either prompts you for details or reads from config file
 
 2. **Temporary Webhook**: Creates a temporary smee.io channel just for the app creation callback
    - This is only used during app creation
    - Your actual app can use whatever webhook setup you prefer (ngrok, smee, etc.)
 
-3. **GitHub Flow**: 
-   - Opens GitHub's app creation page with pre-filled settings
-   - You review and approve the permissions
-   - GitHub redirects back to local server
+3. **GitHub flow**: 
+   - Opens GitHub's app manifest creation flow page, which requires just the app name (will be pre-filled)
+   - User returns to local server with a success message 
    - Tool saves your credentials
 
-4. **Credential Storage**:
-   You'll be prompted where to save:
+4. **Credential storage**:
+   You'll be prompted in the local terminal where to save:
    ```bash
    # .env file (customizable location)
    GITHUB_APP_ID=123456
@@ -93,7 +92,7 @@ skyline create --config config.json --org my-org-name
    - Never commit them to version control
    - Follow your organization's security practices for credential management
 
-## Default Settings
+## Default settings
 
 ### Permissions
 The tool sets up common permissions needed for GitHub Apps:
@@ -124,7 +123,7 @@ Default webhook events (customize as needed):
 ]
 ```
 
-### For Development
+## For development of `skyline`
 
 If you're working on `skyline` itself:
 
