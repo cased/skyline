@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "skyline"
+version = "0.1.0"
+description = "Create GitHub Apps with automated webhook forwarding"
+readme = "README.md"
+authors = [
+    {name = "Cased", email = "ted@cased.com"}
+]
+dependencies = [
+    "flask",
+    "requests",
+    "rich",
+    "click",
+    "sseclient-py"
+]
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+
+[project.scripts]
+skyline = "skyline.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/skyline"]

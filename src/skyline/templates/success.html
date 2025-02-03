@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub App Created!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            line-height: 1.5;
+            color: #000;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 64px 16px;
+            text-align: center;
+        }
+        
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 24px;
+            color: #22c55e;
+        }
+        
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin: 0 0 12px;
+            background: linear-gradient(to right, #22c55e, #15803d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 16px;
+            margin: 0 0 32px;
+        }
+        
+        .note {
+            display: inline-block;
+            background: #f0fdf4;
+            border: 1px solid #dcfce7;
+            border-radius: 8px;
+            padding: 16px 24px;
+            color: #166534;
+            font-size: 14px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+                color: #fff;
+            }
+            
+            h1 {
+                background: linear-gradient(to right, #4ade80, #22c55e);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            
+            .description {
+                color: #888;
+            }
+            
+            .note {
+                background: #022c22;
+                border-color: #064e3b;
+                color: #4ade80;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <svg class="success-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h1>GitHub App Created Successfully!</h1>
+        <p class="description">Your app has been created and configured. Check the terminal for next steps, including saving credentials.</p>
+        <div class="note">You can close this window and return to the terminal</div>
+    </div>
+</body>
+</html>

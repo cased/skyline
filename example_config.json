@@ -1,0 +1,28 @@
+{
+    "name": "my example app using skyline",
+    "url": "https://example.com",
+    "hook_attributes": {
+        "url": "https://example.com/webhook"
+    },
+    "description": "A GitHub App for automating workflows",
+    "public": true,
+    "default_permissions": {
+        "contents": "write",
+        "issues": "write",
+        "checks": "write",
+        "metadata": "read",
+        "pull_requests": "write",
+        "workflows": "write",
+        "members": "read",
+        "deployments": "write"
+    },
+    "default_events": [
+        "push",
+        "pull_request",
+        "issues",
+        "deployment",
+        "workflow_run",
+        "check_run",
+        "check_suite"
+    ]
+}
