@@ -13,7 +13,7 @@ import time
 import os
 import logging
 from . import smee
-from . import __version__
+from . import get_version_string
 
 # Silence Flask development server
 cli = sys.modules['flask.cli']
@@ -288,8 +288,8 @@ def main():
         description="CLI tool for easily creating GitHub Apps",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument('-v', '--version', action='version', 
-                       version=f'%(prog)s {__version__}')
+    parser.add_argument('-v', '--version', action='version',
+                       version=f'%(prog)s {get_version_string()}')
     parser.add_argument('--org', help='GitHub organization name')
     parser.add_argument('--config', help='Path to JSON config file')
     
