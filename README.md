@@ -10,7 +10,7 @@ integrates with GitHub via GitHub Apps, you'll want this.
 
 ## Features
 
-- 🚀 **Easy for Local Development**: Automatic smee.io webhook forwarding setup - no ngrok or public URLs needed
+- 🚀 **Easy for Local Development**: Developers do not need to manually setup their own apps, fill in permission details, etc. Also no need for shared dev apps.
 - 🔐 **Secure Credential Management**: Automatically saves the new app credentials and private key in the right places, so you can get right to work
 - ⚡️ **Flexible Configuration**: Use interactive prompts or JSON config files for reproducible app creation
 - 🔄 **GitHub App Manifest Flow**: Implements GitHub's manifest flow for automated app creation with pre-filled permissions
@@ -90,6 +90,11 @@ skyline create --config config.json
    - Add them to your `.gitignore`
    - Never commit them to version control
    - Follow your organization's security practices for credential management
+
+Note that `skyline` does not handle the webhooks for your GitHub App itself, only
+the creation of the app. You'll still need a smee or ngrok channel for that. 
+However, I have a couple ideas to make that more automatable as 
+well and may fold them into `skyline`.
 
 ## Default settings
 
