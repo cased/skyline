@@ -1,4 +1,4 @@
-# skyline
+# skyline 🌃
 
 CLI tool for easily creating GitHub Apps. Ideal for repeatable and automated local dev setup. If your app
 integrates with GitHub via GitHub Apps, you'll want this.
