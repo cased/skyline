@@ -28,18 +28,6 @@ The script will install `skyline` using pip, making it available in your PATH.
 
 After installation, you can run `skyline` from any directory:
 
-### Interactive Mode (Recommended for First Use)
-
-```bash
-skyline create
-```
-
-You'll be prompted for:
-1. Organization name/username
-2. App name
-3. Homepage URL
-4. Description
-
 ### Config File Mode (Great for Automation)
 
 Create a config file:
@@ -60,6 +48,18 @@ skyline create --config config.json --org my-org-name
 # Or let it prompt for org interactively
 skyline create --config config.json
 ```
+
+### Interactive Mode (Good to try out skyline)
+
+```bash
+skyline create
+```
+
+You'll be prompted for:
+1. Organization name/username
+2. App name
+3. Homepage URL
+4. Description
 
 ## What happens when you run it?
 
@@ -99,7 +99,7 @@ well and may fold them into `skyline`.
 ## Default settings
 
 ### Permissions
-The tool sets up common permissions needed for GitHub Apps:
+The tool sets up common permissions needed for GitHub Apps (customize as needed in your config file):
 ```python
 {
     "contents": "write",    # For repo content access
@@ -114,7 +114,7 @@ The tool sets up common permissions needed for GitHub Apps:
 ```
 
 ### Events
-Default webhook events (customize as needed):
+Default webhook events (customize as needed in your config file):
 ```python
 [
     "push",           # Code pushes
