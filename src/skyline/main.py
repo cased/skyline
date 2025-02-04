@@ -14,6 +14,7 @@ import os
 import logging
 from . import smee
 from . import get_version_string
+from urllib.parse import urlparse
 
 # Silence Flask development server
 cli = sys.modules['flask.cli']
@@ -317,7 +318,17 @@ def main():
         
         # Get app name
         name = Prompt.ask("\nWhat should we name your GitHub App?")
-        url = Prompt.ask("\nWhat's the homepage URL for your app?", default="https://example.com")
+        
+        while True:
+            url = Prompt.ask("\nWhat's the homepage URL for your app?", default="https://example.com")
+            try:
+                result = urlparse(url)
+                if all([result.scheme, result.netloc]):
+                    break
+                console.print("[red]Invalid URL. Please include protocol (e.g., https://) and domain[/red]")
+            except Exception:
+                console.print("[red]Invalid URL format. Please try again.[/red]")
+        
         description = Prompt.ask("\nProvide a brief description of your app")
         
         config = {
@@ -333,9 +344,9 @@ def main():
     if args.org:
         org = args.org
     else:
-        org = Prompt.ask("\nWhat organization should own this app?")
+        org = Prompt.ask("\nWhat organization or user should own this app?")
         if not org:
-            console.print("[red]Organization name is required[/red]")
+            console.print("[red]Organization name or username is required[/red]")
             sys.exit(1)
         
     create_github_app(config, org)

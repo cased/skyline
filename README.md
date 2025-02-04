@@ -14,7 +14,7 @@ integrates with GitHub via GitHub Apps, you'll want this.
 - 🔐 **Secure Credential Management**: Automatically saves the new app credentials and private key in the right places, so you can get right to work
 - ⚡️ **Flexible Configuration**: Use interactive prompts or JSON config files for reproducible app creation
 - 🔄 **GitHub App Manifest Flow**: Implements GitHub's manifest flow for automated app creation with pre-filled permissions
-- 🏢 **Organization Apps**: Create GitHub Apps for your organizations (note: personal account apps not supported)
+- 🏢 **Organization Apps**: Create GitHub Apps for your organizations
 
 ## Installation
 
@@ -35,7 +35,7 @@ skyline create
 ```
 
 You'll be prompted for:
-1. Organization name
+1. Organization name/username
 2. App name
 3. Homepage URL
 4. Description
